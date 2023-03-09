@@ -1,0 +1,9 @@
+.p-4.sm\:ml-84 {
+    margin-left: 16rem;
+}
+
+@media only screen and  (max-width: 650px) {
+    .p-4.sm\:ml-84 {
+        margin-left: 0rem;
+    }
+}
