@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-
+import 'flowbite';
 
 @Component({
   selector: 'app-root',

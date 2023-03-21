@@ -1,0 +1,181 @@
+<app-header></app-header>
+<div class="mt-2 sm:ml-64 justify-center flex">
+  <button
+    data-modal-target="defaultModal"
+    data-modal-toggle="defaultModal"
+    type="button"
+    (click)="generatePDFAndPrint()"
+    class="rounded focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+  >
+    <i class="fa fa-download"></i> Descargar Factura
+  </button>
+</div>
+<div id="PDF" class="p-3 sm:ml-64">
+  <div class="flex justify-center">
+    <div
+      class="invoice-container p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-5/6"
+    >
+      <div>
+        <header>
+          <div class="flex align-items-center">
+            <div class="col-sm-7 text-center text-sm-start mb-3 mb-sm-0">
+              <img
+                id="logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/640px-Microsoft_Azure.svg.png"
+                title="azure"
+                alt="azure"
+                width="50px"
+              />
+            </div>
+            <div class="col-sm-5 text-center text-sm-end">
+              <h4 class="text-7 mb-0 text-gray-700">Factura de Venta</h4>
+            </div>
+          </div>
+          <hr />
+        </header>
+
+        <main>
+          <div class="flex">
+            <div class="col-sm-6 text-gray-700">
+              <strong>Fecha:</strong>
+              {{ venta.fecha | date : "d/MM/yy, h:mm:ss a" }}
+            </div>
+            <div class="col-sm-6 text-sm-end text-gray-700 uppercase">
+              <strong> N° Factura:</strong> {{ venta.idFactura }}
+            </div>
+          </div>
+          <hr />
+          <div class="flex">
+            <div class="col-sm-6 text-sm-end order-sm-1 text-gray-700">
+              <strong>Vendedor:</strong>
+              <address>
+                {{ venta.iduser.nombres }}<br />
+                {{ info.descripcion2 }}<br />
+                {{ info.descripcion }} <br />
+                {{ info.correo }}
+              </address>
+            </div>
+            <div class="col-sm-6 order-sm-0 text-gray-700">
+              <strong>Cliente</strong>
+              <address>
+                {{ venta.idcliente.nombres }}<br />
+                {{ venta.idcliente.correo }}<br />
+                N° Identificación: {{ venta.idcliente.dni }}<br />
+                {{ info.ciudad }} - {{ info.departamento }}
+              </address>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table text-gray-700 dark:text-gray-700">
+                  <thead class="card-header">
+                    <tr>
+                      <td class="col-3 text-center text-gray-700">
+                        <strong>REF</strong>
+                      </td>
+                      <td class="col-3 text-center text-gray-700">
+                        <strong>PRODUCTO</strong>
+                      </td>
+                      <td class="col-3 text-center text-gray-700">
+                        <strong>CANTIDAD</strong>
+                      </td>
+                      <td class="col-3 text-center text-gray-700">
+                        <strong>PRECIO</strong>
+                      </td>
+                      <td
+                        class="col-3 text-end text-gray-700 whitespace-nowrap"
+                      >
+                        <strong>SUB -TOTAL</strong>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="text-gray-700"
+                    *ngFor="let item of detalle_venta"
+                  >
+                    <tr>
+                      <td class="col-3 text-center">
+                        {{ item.idproducto.titulo }}
+                      </td>
+                      <td class="col-3 text-center">
+                        {{ item.idproducto.descripcion }}
+                      </td>
+                      <td class="col-3 text-center">{{ item.cantidad }}</td>
+                      <td class="col-3 text-center">
+                        ${{ item.idproducto.precio_venta | number : "1.0-2" }}
+                      </td>
+                      <td class="col-3 text-center">
+                        ${{
+                          item.idproducto.precio_venta * item.cantidad
+                            | number : "1.0-2"
+                        }}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot class="card-footer">
+                    <tr>
+                      <td colspan="4" class="text-end">
+                        <strong>Sub Total:</strong>
+                      </td>
+                      <td class="text-end">
+                        $ {{ subTotal | number : "1.0-2" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" class="text-end">
+                        <strong>Descuento:</strong>
+                      </td>
+                      <td class="text-end">$0</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" class="text-end">
+                        <strong>Iva:</strong>
+                      </td>
+                      <td class="text-end">$0</td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" class="text-end border-bottom-0">
+                        <strong>Total:</strong>
+                      </td>
+                      <td class="text-end border-bottom-0">
+                        $ {{ total | number : "1.0-2" }}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- Footer -->
+      <footer class="text-center mt-4">
+        <p class="text-1">
+          <strong>NOTA :</strong> Al firmar esta factura, acepta a ver recibido
+          las cantidades correspondientes a esta factura
+        </p>
+        <div class="btn-group btn-group-sm d-print-none"></div>
+      </footer>
+    </div>
+  </div>
+</div>
+<!-- Main modal -->
+<div
+  id="defaultModal"
+  tabindex="-1"
+  aria-hidden="true"
+  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"
+>
+  <div class="relative w-full h-full max-w-2xl md:h-auto">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div
+        id="clase"
+        class="flex flex-col min-h-0 overflow-hidden"
+        style="height: 75vh"
+      ></div>
+    </div>
+  </div>
+</div>

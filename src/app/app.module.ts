@@ -18,7 +18,14 @@ import { TablaProductosComponent } from './componentes/productos/tabla-productos
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 import { RegistrarProductosComponent } from './componentes/productos/registrar-productos/registrar-productos.component';
 import { NewProductoComponent } from './componentes/productos/registrar-productos/new-producto/new-producto.component';
-
+import { CategoriasComponent } from './componentes/productos/categorias/categorias.component';
+import { CategoriasRegistrarComponent } from './componentes/productos/categorias-registrar/categorias-registrar.component';
+import { EditarCategoriasComponent } from './componentes/productos/editar-categorias/editar-categorias.component';
+import { FacturasComponent } from './componentes/facturas/facturas.component';
+import { NuevaFacturaComponent } from './componentes/facturas/nueva-factura/nueva-factura.component';
+import { ComponenteFacturacionComponent } from './componentes/facturas/nueva-factura/componente-facturacion/componente-facturacion.component';
+import { DetallesFacturaComponent } from './componentes/facturas/detalles-factura/detalles-factura.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -33,6 +40,14 @@ import { NewProductoComponent } from './componentes/productos/registrar-producto
     TablaProductosComponent,
     RegistrarProductosComponent,
     NewProductoComponent,
+    CategoriasComponent,
+    CategoriasRegistrarComponent,
+    EditarCategoriasComponent,
+    FacturasComponent,
+    NuevaFacturaComponent,
+    ComponenteFacturacionComponent,
+    DetallesFacturaComponent,
+
 
 
   ],
@@ -43,7 +58,8 @@ import { NewProductoComponent } from './componentes/productos/registrar-producto
     HttpClientModule,
     FormsModule,
     MatSlideToggleModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    NgxPrintModule
 
   ],
   providers: [],
