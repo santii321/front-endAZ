@@ -21,7 +21,7 @@
             <div class="col-sm-7 text-center text-sm-start mb-3 mb-sm-0">
               <img
                 id="logo"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/640px-Microsoft_Azure.svg.png"
+                src="../../../../assets/images/azure.png"
                 title="azure"
                 alt="azure"
                 width="50px"
@@ -127,20 +127,19 @@
                       <td colspan="4" class="text-end">
                         <strong>Descuento:</strong>
                       </td>
-                      <td class="text-end">$0</td>
+                      <td class="text-end">{{ venta.descuentoFactura }}%</td>
                     </tr>
-                    <tr>
-                      <td colspan="4" class="text-end">
-                        <strong>Iva:</strong>
-                      </td>
-                      <td class="text-end">$0</td>
-                    </tr>
+                    <tr></tr>
                     <tr>
                       <td colspan="4" class="text-end border-bottom-0">
                         <strong>Total:</strong>
                       </td>
                       <td class="text-end border-bottom-0">
-                        $ {{ total | number : "1.0-2" }}
+                        $
+                        {{
+                          total - total * (venta.descuentoFactura / 100)
+                            | number : "1.0-2"
+                        }}
                       </td>
                     </tr>
                   </tfoot>

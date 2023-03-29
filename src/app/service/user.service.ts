@@ -29,7 +29,7 @@ export class UserService {
     return this.http.post(this.url + 'login',json,{headers:headers})
   }
 
-  getToken():Observable<any>{
+  getToken():any{
     let token = localStorage.getItem('token');
     if(token){
       this.token = token;
@@ -70,5 +70,9 @@ export class UserService {
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.put(this.url + 'user/editar/'+data._id,data,{headers:headers});
   }
+  eliminar(id: string): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+    return this.http.delete(this.url +'user/'+id, {headers:headers})
+   }
 
 }

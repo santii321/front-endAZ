@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -26,6 +27,16 @@ import { NuevaFacturaComponent } from './componentes/facturas/nueva-factura/nuev
 import { ComponenteFacturacionComponent } from './componentes/facturas/nueva-factura/componente-facturacion/componente-facturacion.component';
 import { DetallesFacturaComponent } from './componentes/facturas/detalles-factura/detalles-factura.component';
 import { NgxPrintModule } from 'ngx-print';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule} from "@angular/material/autocomplete"
+import { MatInputModule }from "@angular/material/input";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
+import { NuevoClienteComponent } from './componentes/clientes/nuevo-cliente/nuevo-cliente.component';
+import { UsuariosComponent } from './componentes/usuarios/usuarios.component';
+import { NuevoUsuarioComponent } from './componentes/usuarios/nuevo-usuario/nuevo-usuario.component';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +58,10 @@ import { NgxPrintModule } from 'ngx-print';
     NuevaFacturaComponent,
     ComponenteFacturacionComponent,
     DetallesFacturaComponent,
+    ClientesComponent,
+    NuevoClienteComponent,
+    UsuariosComponent,
+    NuevoUsuarioComponent,    
 
 
 
@@ -59,7 +74,15 @@ import { NgxPrintModule } from 'ngx-print';
     FormsModule,
     MatSlideToggleModule,
     NgxExtendedPdfViewerModule,
-    NgxPrintModule
+    NgxPrintModule,
+    MatSelectModule,
+    NgxMatSelectSearchModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgSelectModule, 
+    FormsModule
 
   ],
   providers: [],

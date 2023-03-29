@@ -29,4 +29,16 @@ export class FacturaService {
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.get(this.url+'venta/'+id,{headers:headers});
   }
+  eliminar(id: string): Observable <any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json')
+    return this.http.delete(this.url+'venta/data/'+id,{headers:headers})
+  }
+  get_venta():Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.get(this.url+'ventas/actual',{headers:headers});
+  }
+  contadorVenta(){
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.get(this.url+'ventas/contar', {headers:headers})
+   }
 }

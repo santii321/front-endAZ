@@ -1,27 +1,25 @@
+import { UserService } from 'src/app/service/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FacturaService } from 'src/app/service/factura.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-facturas',
-  templateUrl: './facturas.component.html',
-  styleUrls: ['./facturas.component.css'],
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css'],
 })
-export class FacturasComponent implements OnInit {
-  public ventas: any;
-
-  constructor(private facturaService: FacturaService) {}
+export class UsuariosComponent implements OnInit {
+  public usuarios!: any;
+  constructor(private userService: UserService) {}
   ngOnInit(): void {
-    this.facturaService.get_factura().subscribe((response) => {
-      this.ventas = response.ventas;
-      console.log(response.ventas);
+    this.userService.get_users().subscribe((response) => {
+      this.usuarios = response.usuarios;
+      console.log(response.usuarios);
     });
   }
   eliminar(id: string) {
     Swal.fire({
       title: 'Estas seguro de eliminarlo?',
-      text: 'Si la eliminas no podras recuperar esta factura!',
+      text: 'Eliminación!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Eliminar!',
@@ -34,10 +32,11 @@ export class FacturasComponent implements OnInit {
           'Se elimino correctamente.',
           'success'
         );
-        this.facturaService.eliminar(id).subscribe((response) => {
-          this.ventas = response.ventas;
+        this.userService.eliminar(id).subscribe((response) => {
+          this.usuarios = response.usuario;
+          console.log('se ha eliminado correctamente el usuario');
+          this.ngOnInit();
         });
-        this.ngOnInit();
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel

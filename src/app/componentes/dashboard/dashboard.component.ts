@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     if (this.identity) {
       console.log('bien')
+      console.log(this.identity)
     } else {
       this.router.navigate(['']);
       console.log("error")

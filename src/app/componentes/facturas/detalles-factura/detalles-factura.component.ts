@@ -34,6 +34,7 @@ export class DetallesFacturaComponent implements OnInit {
 
           for (let item of this.detalle_venta) {
             this.subTotal += item.idproducto.precio_venta * item.cantidad;
+            this.total = this.subTotal;
           }
           console.log(this.subTotal);
           console.log(response.data.detalles);
@@ -51,13 +52,14 @@ export class DetallesFacturaComponent implements OnInit {
       format: 'A5',
     });
     const DATA = document.getElementById('PDF');
-    html2canvas(DATA!).then((canvas) => {
+    html2canvas(DATA!)
+      .then((canvas) => {
         const imgData = canvas.toDataURL('image/gif');
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
 
         doc.addImage(imgData, 'GIF', 0, 0, pageWidth, pageHeight);
-       return doc
+        return doc;
       })
       .then((docResult) => {
         const PdfElemento = document.getElementById('clase')!;
@@ -66,8 +68,7 @@ export class DetallesFacturaComponent implements OnInit {
             '<iframe src="' +
             doc.output('bloburl') +
             '"class="flex-1 border border-gray-400 border-solid rounded-md"></iframe>';
-            console.log("esta bien")
-            
+          console.log('esta bien');
         }
       });
   }

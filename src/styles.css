@@ -1,3 +1,62 @@
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    position: absolute;
+    left: 14px;
+    width: 100%;
+}
+.ng-select .ng-select-container:after {
+    border-bottom: green;
+    content: '';
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    transition: border-color 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+}
+.ng-select .ng-select-container {
+    color: rgb(107 114 128);
+    align-items: baseline;
+    min-height: 51.5px;
+    font-weight: 500;
+}
+.ng-select.ng-select-focused .ng-select-container:after {
+    border-color: rgb(107 114 128);
+    border-width: 0px;
+  }
+  .ng-select-container.ng-has-value {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.ng-select .ng-select-container .ng-value-container {
+    align-items: revert;
+    padding: 3px 6px;
+    border-top: 0.84375em solid transparent;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    background: rgba(119, 119, 119, 0.69);
+    color: rgba(0,0,0,0.87);
+}
+.ng-select-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.ng-select .ng-select-container .ng-value-container .ng-input>input {
+    margin-left: 15px;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    position: absolute;
+    left: 20px;
+    width: 100%;
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container, .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+}
+.ng-input {
+    margin-top: 12px;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~@ng-select/ng-select/themes/default.theme.css";
