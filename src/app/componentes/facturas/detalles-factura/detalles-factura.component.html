@@ -13,7 +13,7 @@
 <div id="PDF" class="p-3 sm:ml-64">
   <div class="flex justify-center">
     <div
-      class="invoice-container p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-5/6"
+      class="invoice-container p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 w-full"
     >
       <div>
         <header>
@@ -28,7 +28,7 @@
               />
             </div>
             <div class="col-sm-5 flex-1 flex justify-end">
-              <h4 class="text-7 mb-0 text-gray-700">Factura de Venta</h4>
+              <h4 class="text-4xl mb-0 text-gray-700">Factura de Venta</h4>
             </div>
           </div>
           <hr />
@@ -36,118 +36,146 @@
 
         <main>
           <div class="flex">
-            <div class="col-sm-6 text-gray-700">
+            <div class="px-6 py-3 text-gray-700">
               <strong>Fecha:</strong>
               {{ venta.fecha | date : "d/MM/yy, h:mm:ss a" }}
             </div>
             <div
-              class="col-sm-6 flex-1 justify-end flex text-gray-700 uppercase"
+              class="px-6 py-3 flex-1 justify-end flex text-gray-700 uppercase"
             >
               <strong> N° Factura:</strong> {{ venta.idFactura }}
             </div>
           </div>
           <hr />
-          <div class="flex">
-            <div class="col-sm-6 text-sm-end order-sm-1 text-gray-700">
+          <div class="flex px-6 py-3">
+            <div class="px-6 py-3 text-sm-end order-sm-1 text-gray-700">
               <strong>Vendedor:</strong>
-              <address>
+              <p>
                 {{ venta.iduser.nombres }}<br />
                 {{ info.descripcion2 }}<br />
                 {{ info.descripcion }} <br />
                 {{ info.correo }}
-              </address>
+              </p>
             </div>
-            <div class="flex-1 items-end text-end flex-col flex order-sm-0 text-gray-700">
+            <div
+              class="flex-1 items-end text-end flex-col flex order-sm-0 text-gray-700"
+            >
               <div>
-              <strong>Cliente</strong>
-              <address>
-                {{ venta.idcliente.nombres }}<br />
-                {{ venta.idcliente.correo }}<br />
-                N° Identificación: {{ venta.idcliente.dni }}<br />
-                {{ info.ciudad }} - {{ info.departamento }}
-              </address>
-            </div>
+                <strong>Cliente</strong>
+                <p>
+                  {{ venta.idcliente.nombres }}<br />
+                  {{ venta.idcliente.correo }}<br />
+                  N° Identificación: {{ venta.idcliente.dni }}<br />
+                  {{ info.ciudad }} - {{ info.departamento }}
+                </p>
+              </div>
             </div>
           </div>
-
-          <div class="card">
-            <div class="card-body p-0">
-              <div class="table-responsive">
-                <table class="table text-gray-700 dark:text-gray-700">
-                  <thead class="card-header">
-                    <tr>
-                      <td class="col-3 text-center text-gray-700">
-                        <strong>REF</strong>
-                      </td>
-                      <td class="col-3 text-center text-gray-700">
-                        <strong>PRODUCTO</strong>
-                      </td>
-                      <td class="col-3 text-center text-gray-700">
-                        <strong>CANTIDAD</strong>
-                      </td>
-                      <td class="col-3 text-center text-gray-700">
-                        <strong>PRECIO</strong>
-                      </td>
-                      <td
-                        class="col-3 text-end text-gray-700 whitespace-nowrap"
+          <div class="w-full p-6 border border-gray-200 rounded-lg">
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full text-left text-sm font-light">
+                      <thead
+                        class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600"
                       >
-                        <strong>SUB -TOTAL</strong>
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="text-gray-700"
-                    *ngFor="let item of detalle_venta"
-                  >
-                    <tr>
-                      <td class="col-3 text-center">
-                        {{ item.idproducto.titulo }}
-                      </td>
-                      <td class="col-3 text-center">
-                        {{ item.idproducto.descripcion }}
-                      </td>
-                      <td class="col-3 text-center">{{ item.cantidad }}</td>
-                      <td class="col-3 text-center">
-                        ${{ item.idproducto.precio_venta | number : "1.0-2" }}
-                      </td>
-                      <td class="col-3 text-center">
-                        ${{
-                          item.idproducto.precio_venta * item.cantidad
-                            | number : "1.0-2"
-                        }}
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot class="card-footer">
-                    <tr>
-                      <td colspan="4" class="text-end">
-                        <strong>Sub Total:</strong>
-                      </td>
-                      <td class="text-end">
-                        $ {{ subTotal | number : "1.0-2" }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="4" class="text-end">
-                        <strong>Descuento:</strong>
-                      </td>
-                      <td class="text-end">{{ venta.descuentoFactura }}%</td>
-                    </tr>
-                    <tr></tr>
-                    <tr>
-                      <td colspan="4" class="text-end border-bottom-0">
-                        <strong>Total:</strong>
-                      </td>
-                      <td class="text-end border-bottom-0">
-                        $
-                        {{
-                          total - total * (venta.descuentoFactura / 100)
-                            | number : "1.0-2"
-                        }}
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
+                        <tr>
+                          <td class="px-6 py-3 text-center text-gray-700">
+                            <strong>REF</strong>
+                          </td>
+                          <td class="px-6 py-3 text-center text-gray-700">
+                            <strong>PRODUCTO</strong>
+                          </td>
+                          <td class="px-6 py-3 text-center text-gray-700">
+                            <strong>CANTIDAD</strong>
+                          </td>
+                          <td class="px-6 py-3 text-center text-gray-700">
+                            <strong>PRECIO</strong>
+                          </td>
+                          <td
+                            class="px-6 py-3 text-center text-gray-700 whitespace-nowrap"
+                          >
+                            <strong>SUB -TOTAL</strong>
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let item of detalle_venta">
+                        <tr
+                          class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700"
+                        >
+                          <td
+                            class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-white text-center"
+                          >
+                            {{ item.idproducto.titulo }}
+                          </td>
+                          <td
+                            class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-white text-center"
+                          >
+                            {{ item.idproducto.descripcion }}
+                          </td>
+                          <td
+                            class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-white text-center"
+                          >
+                            {{ item.cantidad }}
+                          </td>
+                          <td
+                            class="px-6 py-4 font-medium text-gray-600 whitespace-nowrap dark:text-white text-center"
+                          >
+                            ${{
+                              item.idproducto.precio_venta | number : "1.0-2"
+                            }}
+                          </td>
+                          <td
+                            class="py-4 font-medium text-gray-600 whitespace-nowrap dark:text-white text-center"
+                          >
+                            ${{
+                              item.idproducto.precio_venta * item.cantidad
+                                | number : "1.0-2"
+                            }}
+                          </td>
+                        </tr>
+                      </tbody>
+                      <tfoot
+                        class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700"
+                      >
+                        <tr>
+                          <td colspan="4" class="text-end p-3">
+                            <strong>Sub Total:</strong>
+                          </td>
+                          <td class="text-center">
+                            $ {{ subTotal | number : "1.0-2" }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="4" class="text-end p-3">
+                            <strong>Descuento:</strong>
+                          </td>
+                          <td
+                            class="text-center border-t-[0.5px] border-gray-200"
+                          >
+                            {{ venta.descuentoFactura }}%
+                          </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                          <td colspan="4" class="text-end p-3">
+                            <strong class="">Total:</strong>
+                          </td>
+                          <td
+                            class="text-center border-t-[0.5px] border-gray-200"
+                          >
+                            $
+                            {{
+                              total - total * (venta.descuentoFactura / 100)
+                                | number : "1.0-2"
+                            }}
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
