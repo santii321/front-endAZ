@@ -17,7 +17,7 @@
     >
       <div>
         <header>
-          <div class="flex align-items-center">
+          <div class="flex align-items-center w-full">
             <div class="col-sm-7 text-center text-sm-start mb-3 mb-sm-0">
               <img
                 id="logo"
@@ -27,7 +27,7 @@
                 width="50px"
               />
             </div>
-            <div class="col-sm-5 text-center text-sm-end">
+            <div class="col-sm-5 flex-1 flex justify-end">
               <h4 class="text-7 mb-0 text-gray-700">Factura de Venta</h4>
             </div>
           </div>
@@ -40,7 +40,9 @@
               <strong>Fecha:</strong>
               {{ venta.fecha | date : "d/MM/yy, h:mm:ss a" }}
             </div>
-            <div class="col-sm-6 text-sm-end text-gray-700 uppercase">
+            <div
+              class="col-sm-6 flex-1 justify-end flex text-gray-700 uppercase"
+            >
               <strong> N° Factura:</strong> {{ venta.idFactura }}
             </div>
           </div>
@@ -55,7 +57,8 @@
                 {{ info.correo }}
               </address>
             </div>
-            <div class="col-sm-6 order-sm-0 text-gray-700">
+            <div class="flex-1 items-end text-end flex-col flex order-sm-0 text-gray-700">
+              <div>
               <strong>Cliente</strong>
               <address>
                 {{ venta.idcliente.nombres }}<br />
@@ -63,6 +66,7 @@
                 N° Identificación: {{ venta.idcliente.dni }}<br />
                 {{ info.ciudad }} - {{ info.departamento }}
               </address>
+            </div>
             </div>
           </div>
 

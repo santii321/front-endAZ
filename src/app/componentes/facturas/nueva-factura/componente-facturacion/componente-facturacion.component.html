@@ -349,7 +349,7 @@
                 width="50px"
               />
             </div>
-            <div class="col-sm-5 text-center text-sm-end">
+            <div class="col-sm-5 text-center flex-1 justify-end flex">
               <h4 class="text-7 mb-0 text-gray-700">Factura de Venta</h4>
             </div>
           </div>
@@ -364,28 +364,30 @@
             </div>
             <div
               *ngFor="let item of ventasActuales"
-              class="col-sm-6 text-sm-end text-gray-700 uppercase"
+              class="col-sm-6 flex-1 justify-end flex text-gray-700 uppercase"
             >
               <strong> N° Factura:</strong> {{ item.idActual }}
             </div>
           </div>
           <hr />
           <div class="flex">
-            <div class="col-sm-6 text-sm-end order-sm-1 text-gray-700">
+            <div class="col-sm-6 order-sm-1 text-gray-700">
               <strong>Vendedor:</strong><br />
               {{ identity.nombres }}<br />
               {{ info.descripcion2 }}<br />
               {{ info.descripcion }} <br />
               {{ info.correo }}
             </div>
-            <div class="col-sm-6 order-sm-0 text-gray-700">
+            <div class="flex-1 items-end text-end flex-col flex order-sm-0 text-gray-700">
               <strong>Cliente:</strong>
+              <div>
               <address>Nombre:
                 <br />Email:
                 <br />Identidicación:
                 <br />
                 {{ info.ciudad }} - {{ info.departamento }}
               </address>
+              </div>
             </div>
           </div>
 
