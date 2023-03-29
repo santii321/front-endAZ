@@ -15,7 +15,6 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-componente-facturacion',
   templateUrl: './componente-facturacion.component.html',
-  styleUrls: ['./componente-facturacion.component.css'],
 })
 export class ComponenteFacturacionComponent implements OnInit {
   public hora = new Date().toLocaleString();

@@ -8,7 +8,6 @@ import html2canvas from 'html2canvas';
 @Component({
   selector: 'app-detalles-factura',
   templateUrl: './detalles-factura.component.html',
-  styleUrls: ['./detalles-factura.component.css'],
 })
 export class DetallesFacturaComponent implements OnInit {
   public venta: any;
