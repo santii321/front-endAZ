@@ -1,3 +1,3 @@
 export var Global = {
-    url : 'http://localhost:4201/api/',
+    url : 'https://backend-project-0gpe.onrender.com/api/',
 }
